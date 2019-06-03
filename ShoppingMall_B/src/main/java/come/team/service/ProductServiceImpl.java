@@ -33,5 +33,10 @@ public class ProductServiceImpl implements ProductService {
 	public ProductVO productView(String productCode) {
 		return mapper.productView(productCode);
 	}
+	
+	@Override
+	public void register(ProductVO vo) {
+		mapper.insertProduct(vo);
+	}
 
 }
