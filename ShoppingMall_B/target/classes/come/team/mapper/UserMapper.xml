@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="come.team.mapper.UserMapper">
+
+<insert id="userRegister">
+		insert into TBL_USER (ID, PASSWORD, NAME, ADDRESS, CONTACT, EMAIL)
+	    values(#{id}, #{password}, #{name}, #{address}, #{contact}, #{email})  
+</insert>
+
+<select id="list" resultType="come.team.domain.UserVO">
+		select ID, PASSWORD, NAME, ADDRESS, CONTACT, EMAIL, POINT, USERCODE, REGIDATE
+		from TBL_USER
+		order by REGIDATE desc
+</select>
+
+<select id="user" resultType="come.team.domain.UserVO">
+		select ID, PASSWORD, NAME, ADDRESS, CONTACT, EMAIL, POINT, USERCODE, REGIDATE
+		from TBL_USER
+		where ID = #{id}
+</select>
+	
+</mapper>

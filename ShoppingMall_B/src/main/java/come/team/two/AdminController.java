@@ -5,36 +5,36 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import come.team.domain.UserVO;
-import come.team.service.UserService;
+import come.team.domain.ProductVO;
+import come.team.service.ProductService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Controller
-@RequestMapping("/*")
 @Log4j
+@RequestMapping("/product")
 @AllArgsConstructor
-public class UserController {
+public class AdminController {
 	
-	private UserService service;
+	private ProductService service;
 	
 	@GetMapping("/index")
 	public void index() {
 		
 	}
 	
-	@GetMapping("/join")
-	public void join() {
+	@GetMapping("/register")
+	public void register() {
 		
 	}
 	
-	@PostMapping("/join") //회원가입하고 로그인폼으로 이동
-	public String join(UserVO vo) {
-		service.join(vo);
+	
+	@PostMapping("/register") //관리자가 제품 등록하는
+	public String register(ProductVO vo) {
+		service.register(vo);
 		
-		log.info("UserVO: " + vo);
+		log.info("productVO: " + vo);
 		
 		return "redirect:/product/list";
-		
 	}
 }
