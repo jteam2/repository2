@@ -52,6 +52,11 @@
 		STOCK > 0
 	</select>
 
+	<insert id="insertProduct">
+		insert into TBL_PRODUCT (PRODUCTCODE, PRODUCTNAME, MANUFACTURER, PRICE, DESCRIPTION, OS,
+	      PRODUCTTYPE, STOCK, USABILITY)
+	    values(#{productCode}, #{productName}, #{manufacturer}, #{price}, #{description}, #{os}, #{productType}, #{stock}, #{usability})  
+	</insert>
 
 
 </mapper>
