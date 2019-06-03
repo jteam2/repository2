@@ -68,9 +68,8 @@
 				</div>
 				<div class="pull-right">
 					<ul class="header-top-links">
-						<li><a href="/product/list">Store</a></li>
-						<li><a href="#">Newsletter</a></li>
-						<li><a href="#">FAQ</a></li>
+						<li onclick="location.href='/product/list'">Store</li>
+						<li onclick="location.href='/inquiry/list'">Inquiry</li>
 					</ul>
 				</div>
 			</div>

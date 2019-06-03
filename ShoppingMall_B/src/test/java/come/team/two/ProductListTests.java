@@ -9,7 +9,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import come.team.domain.Criteria;
-import come.team.domain.ReviewVO;
+import come.team.domain.InquiryVO;
+import come.team.domain.ProductVO;
+import come.team.mapper.InquiryMapper;
 import come.team.mapper.ProductMapper;
 import come.team.mapper.ReviewMapper;
 import lombok.Setter;
@@ -26,13 +28,23 @@ public class ProductListTests {
 	
 	@Setter(onMethod_ = @Autowired)
 	private ReviewMapper reviewMapper;
-
 	
+	@Setter(onMethod_ = @Autowired)
+	private InquiryMapper inquiryMapper;
+	
+	@Test
+	public void getInquiryList() {
+		Criteria criteria = new Criteria(1, 10);
+		List<InquiryVO> list = inquiryMapper.getInquiryList(criteria);
+		list.forEach(inq -> log.info(inq));
+	}
+
+//	
 //	@Test
 //	public void findPagingList() { //페이징해서 리스트를 불러 올 수 있는지 테스트
 //		Criteria criteria = new Criteria();
 //
-//		List<ProductVO> list = mapper.findPagingList(criteria); //mapper를 통해서 값 구하기
+//		List<ProductVO> list = productMapper.findPagingList(criteria); //mapper를 통해서 값 구하기
 //		
 //		list.forEach(page -> log.info(page));
 //	}
@@ -44,7 +56,7 @@ public class ProductListTests {
 //		criteria.setType("M"); 
 //		criteria.setKeyword("LG"); //Manufacturer가 LG인 것만 추출
 //		
-//		List<ProductVO> list = mapper.findPagingList(criteria);
+//		List<ProductVO> list = productMapper.findPagingList(criteria);
 //
 //		list.forEach(page -> log.info(page));
 //		  //productType = T
@@ -53,15 +65,16 @@ public class ProductListTests {
 //		  //manufacturer = M
 //		  //description = D
 //	}
-
-	@Test
-	public void getReviewList() {
-		Criteria criteria = new Criteria(2, 15);
-		
-		List<ReviewVO> list = reviewMapper.getReviewList(criteria, "b12");
-		
-		list.forEach(review -> log.info(review));
-		
-	}
+//	
+//
+//	@Test
+//	public void getReviewList() {
+//		Criteria criteria = new Criteria(2, 15);
+//		
+//		List<ReviewVO> list = reviewMapper.getReviewList(criteria, "b12");
+//		
+//		list.forEach(review -> log.info(review));
+//		
+//	}
 
 }
