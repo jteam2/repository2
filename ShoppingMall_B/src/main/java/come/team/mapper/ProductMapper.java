@@ -1,5 +1,6 @@
 package come.team.mapper;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import come.team.domain.Criteria;

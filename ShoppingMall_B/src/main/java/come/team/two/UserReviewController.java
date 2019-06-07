@@ -1,5 +1,6 @@
 package come.team.two;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -32,7 +33,7 @@ public class UserReviewController {
 	public ResponseEntity<ReviewPageDTO> getReviewList(@PathVariable("page") int page, 
 												  @PathVariable("productCode") String productCode){
 		log.info("get Review list");
-		Criteria criteria = new Criteria(page, 10);
+		Criteria criteria = new Criteria(page, 10, new BigDecimal(0));
 		log.info(criteria);
 		
 		return new ResponseEntity<ReviewPageDTO>(reviewService.getReviewListPage(criteria, productCode), HttpStatus.OK);

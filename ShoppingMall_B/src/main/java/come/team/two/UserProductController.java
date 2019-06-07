@@ -1,5 +1,6 @@
 package come.team.two;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -38,7 +39,9 @@ public class UserProductController {
 	public void list(Criteria criteria, String price, Model model) {
 		double price_total = 0;
 		
-		if(price != null) {
+		if(price == null) {
+			price_total = productService.pricetotal();
+		} else {
 			log.info("백분율 : " + price);
 			log.info("최대 가격 : " + productService.pricetotal());
 			price_total = Math.ceil(Integer.parseInt(price)*productService.pricetotal()/100000)*1000+1000;
@@ -46,9 +49,10 @@ public class UserProductController {
 		
 		log.info("설정된 price total: "+price_total);
 		
-		criteria.setAmount(10);
-
 		model.addAttribute("pricetotal", productService.pricetotal());
+		
+		criteria.setAmount(10);
+		criteria.setPrice(new BigDecimal(price_total));
 		
 		log.info("list: " + criteria);
 		
@@ -63,7 +67,7 @@ public class UserProductController {
 	@GetMapping("/view")
 	public void view(String productCode, Model model) {
 		ProductVO productVO = productService.productView(productCode);
-		Criteria criteria = new Criteria(1, 10);
+		Criteria criteria = new Criteria(1, 10, new BigDecimal(productService.pricetotal()));
 		List<ReviewVO> reviewList = reviewService.getReviewList(criteria, productCode);
 				
 		model.addAttribute("board", productVO);

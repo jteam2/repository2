@@ -1,5 +1,6 @@
 package come.team.two;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.Test;
@@ -34,17 +35,17 @@ public class ProductListTests {
 	
 	@Test
 	public void getInquiryList() {
-		Criteria criteria = new Criteria(1, 10);
+		Criteria criteria = new Criteria(1, 10, new BigDecimal(0));
 		List<InquiryVO> list = inquiryMapper.getInquiryList(criteria);
 		list.forEach(inq -> log.info(inq));
 	}
 
 //	
 //	@Test
-//	public void findPagingList() { //페이징해서 리스트를 불러 올 수 있는지 테스트
+//	public void findPagingList() { //�럹�씠吏뺥빐�꽌 由ъ뒪�듃瑜� 遺덈윭 �삱 �닔 �엳�뒗吏� �뀒�뒪�듃
 //		Criteria criteria = new Criteria();
 //
-//		List<ProductVO> list = productMapper.findPagingList(criteria); //mapper를 통해서 값 구하기
+//		List<ProductVO> list = productMapper.findPagingList(criteria); //mapper瑜� �넻�빐�꽌 媛� 援ы븯湲�
 //		
 //		list.forEach(page -> log.info(page));
 //	}
@@ -54,7 +55,7 @@ public class ProductListTests {
 //	public void findByKeyword() {
 //		Criteria criteria = new Criteria();
 //		criteria.setType("M"); 
-//		criteria.setKeyword("LG"); //Manufacturer가 LG인 것만 추출
+//		criteria.setKeyword("LG"); //Manufacturer媛� LG�씤 寃껊쭔 異붿텧
 //		
 //		List<ProductVO> list = productMapper.findPagingList(criteria);
 //

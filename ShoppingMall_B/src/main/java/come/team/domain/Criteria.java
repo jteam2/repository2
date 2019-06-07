@@ -1,6 +1,8 @@
 package come.team.domain;
 
 
+import java.math.BigDecimal;
+
 import org.springframework.web.util.UriComponentsBuilder;
 
 import lombok.Getter;
@@ -17,15 +19,21 @@ public class Criteria {
 	
 	private String type;
 	private String keyword;
+	private BigDecimal price;
 
 	public Criteria() {
-		this(1, 10);
+		this(1, 10, new BigDecimal(1000000));
 	}
 		
 	
-	public Criteria(int pageNum, int amount) {
+	public Criteria(int pageNum, int amount, BigDecimal price) {
 		this.pageNum = pageNum;
 		this.amount = amount;
+		if (price.compareTo(new BigDecimal(0)) == 0) {
+			this.price = new BigDecimal(1000000);
+		} else {
+			this.price = price;
+		}
 	}
 	
 	  public String[] getTypeArr() {
@@ -42,7 +50,8 @@ public class Criteria {
 				  .queryParam("pageNum", this.pageNum)
 				  .queryParam("amount", this.amount)
 				  .queryParam("type", this.type)
-				  .queryParam("keyword", this.keyword);
+				  .queryParam("keyword", this.keyword)
+				  .queryParam("price", this.price);
 		  
 		  return builder.toUriString();  
 		}	
